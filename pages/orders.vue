@@ -4,7 +4,7 @@
       id="OrdersPage"
       class="mt-4 md:-mt-2 max-w-[1440px] mx-auto px-2 min-h-[58vh]"
     >
-      <div class="bg-white w-full p-6 min-h-[150px] rounded-lg">
+      <div class="bg-white w-full p-6 rounded-lg">
         <div class="flex items-center text-xl">
           <Icon
             name="carbon:delivery"
@@ -20,9 +20,13 @@
             :key="order.id"
             class="text-md pl-[50px]"
           >
-            <div class="border-b py-4">
+            <div
+              class="border-b py-4"
+              v-if="order.userId === user.id"
+            >
               <p>
                 <span class="text-md font-bold">ID:</span> {{ order.stripeId }}
+                {{ order.userId }}
               </p>
 
               <div class="pt-2"></div>
@@ -63,6 +67,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import MainLayout from '~/layouts/MainLayout.vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()

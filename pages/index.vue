@@ -6,7 +6,7 @@
     >
       <div
         v-if="products"
-        class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4"
+        class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-1 gap-y-8 justify-center"
       >
         <div
           v-for="product in products.data"
@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-
 import MainLayout from '~/layouts/MainLayout.vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()

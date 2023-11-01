@@ -1,6 +1,7 @@
 <template>
-  
+  <Loading v-if="isLoading" />
   <div
+    v-else
     id="MainLayout"
     class="w-full fixed z-30"
   >
@@ -9,7 +10,7 @@
       class="w-full bg-[#F2F2F2] border-b md:block hidden"
     >
       <ul
-        class="flex items-center justify-end text-xs text-[#333333] font-light px-4 h-10 bg-[#F2F2F2] max-w-[1440px] mx-auto"
+        class="flex items-center justify-end text-xs text-[#333333] font-light px-4 h-10 bg-[#F2F2F2] max-w-[1354px] mx-auto"
       >
         <li
           class="border-r border-r-gray-400 px-3 hover:text-[#11feed] cursor-pointer font-semibold transition-[1s] duration-300 ease-out"
@@ -114,7 +115,7 @@
 
               <li
                 v-if="user"
-                @click="client.auth.signOut()"
+                @click="signOut"
                 class="text-[13px] py-2 px-4 w-full hover:bg-gray-200 hover:rounded-b-lg font-semibold"
               >
                 <div class="flex items-center text-[14px] font-semibold">
@@ -135,7 +136,7 @@
       class="flex items-center w-full bg-white drop-shadow-md z-40"
     >
       <div
-        class="flex lg:justify-start justify-between gap-10 max-w-[1440px] w-full p-2 mx-auto"
+        class="flex justify-between gap-10 max-w-[1440px] w-full p-2 mx-auto pr-16"
       >
         <NuxtLink
           to="/"
@@ -248,11 +249,25 @@
             "
           />
         </button>
+
+        <div
+          v-if="user"
+          class="my-auto flex items-center justify-end"
+        >
+          <div>
+            {{ user.user_metadata.full_name }}
+          </div>
+
+          <div>
+            <img
+              class="rounded-full w-[40px] ml-2"
+              :src="user.user_metadata.avatar_url"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <Loading v-if="userStore.isLoading" />
 
   <div class="lg:pt-[150px] md:pt-[130px] pt-[80px]" />
   <slot />
@@ -261,18 +276,29 @@
 </template>
 
 <script setup>
-import { watch } from 'vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
 
+let isLoading = ref(true)
 let isAccoutMenu = ref(false)
 let searchItem = ref('')
 let isSearching = ref(false)
 let isHover = ref(false)
 let items = ref('')
+
+onMounted(() => isSearching.value = false)
+
+const goTo = (url) => {
+  return navigateTo(`/${url}`)
+}
+
+const signOut = () => {
+  client.auth.signOut()
+  return navigateTo('/')
+}
 
 const seachByName = useDebounce(async () => {
   isSearching.value = true
@@ -292,5 +318,10 @@ watch(
     }
     seachByName()
   }
+)
+onBeforeMount(() =>
+  setTimeout(() => {
+    isLoading.value = false
+  }, 1000)
 )
 </script>

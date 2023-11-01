@@ -4,12 +4,12 @@
       id="ItemPage"
       class="mt-4 md:-mt-2 max-w-[1440px] mx-auto px-4"
     >
-      <div class="md:flex gap-4 justify-between mx-auto w-full">
-        <div class="md:w-[40%] mb-4">
-          <div class="grid grid-rows-3 grid-flow-col gap-4">
+      <div class="lg:flex gap-4 justify-between mx-auto w-full">
+        <div class="lg:w-[40%] mb-4 w-[100%]">
+          <div class="grid sm:grid-flow-col sm:gap-4">
             <div
               v-if="images[0] !== ''"
-              class="row-span-3 items-center justify-center pr-2 overflow-y-auto max-h-[500px]"
+              class="grid items-start justify-center overflow-y-auto max-h-[500px] pr-1 -mr-2 sm:max-h-[560px] sm:w-[120px]"
             >
               <div
                 v-for="image in images"
@@ -18,26 +18,27 @@
                 <img
                   @mouseover="currentImage = image"
                   @click="currentImage = image"
-                  width="70"
-                  class="rounded-md border-[2px] cursor-pointer bg-cover h-[70px] mt-1 object-contain"
+                  class="rounded-md border-[1px] cursor-pointer bg-cover w-full mb-1 object-contain sm:w-[100px] sm:h-[130px]"
                   :class="currentImage === image ? 'border-[#000]' : ''"
                   :src="image"
                 />
               </div>
             </div>
-            <img
-              v-if="currentImage"
-              class="rounded-lg row-span-3 w-[500px] h-[500px] object-contain bg-white"
-              :src="currentImage"
-            />
+            <div>
+              <img
+                v-if="currentImage"
+                class="rounded-lg w-[100%] h-[560px] object-contain bg-white sm:flex hidden"
+                :src="currentImage"
+              />
+            </div>
           </div>
         </div>
-        <div class="md:w-[60%] bg-white p-3 rounded-lg mb-4">
+        <div class="lg:w-[60%] bg-white p-3 rounded-lg mb-4">
           <div v-if="product && product.data">
             <p class="md-2 text-xl text-[#252525] font-bold">
               {{ product.data.title }}
             </p>
-            <p class="font-light mb-2 text-lg text-[#252525] font-semibold">
+            <p class="font-light mb-2 text-md text-[#252525] font-semibold">
               {{ product.data.description }}
             </p>
 
@@ -166,13 +167,13 @@ const priceComputed = computed(() => {
 
 const images = ref([
   '',
-  'https://dummyimage.com/810.png/2aed0b/000',
-  'https://dummyimage.com/810.png/2aff0b/000',
-  'https://dummyimage.com/810.png/2aedff/000',
-  'https://dummyimage.com/810.png/71feed/000',
-  'https://dummyimage.com/810.png/9eeeed/000',
-  'https://dummyimage.com/810.png/2aed0b/000',
-  'https://dummyimage.com/810.png/ddfeed/000',
+  'https://dummyimage.com/516x688.png/2aed0b/000',
+  'https://dummyimage.com/516x688.png/2aff0b/000',
+  'https://dummyimage.com/516x688.png/2aedff/000',
+  'https://dummyimage.com/516x688.png/71feed/000',
+  'https://dummyimage.com/516x688.png/9eeeed/000',
+  'https://dummyimage.com/516x688.png/2aed0b/000',
+  'https://dummyimage.com/516x688.png/ddfeed/000',
 ])
 
 const addToCart = () => {

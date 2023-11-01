@@ -4,55 +4,28 @@
     class="bg-white inline-block rounded transition-[2s] hover:drop-shadow-md cursor-pointer"
   >
     <NuxtLink :to="`/item/${product.id}`">
-      <div class="p-3 bg-white rounded-lg w-[270px] h-[450px]">
-        <img
-          class="rounded-t w-[200px] max-h-[230px] object-contain bg-white mx-auto mb-4"
-          :src="product.url"
-        />
-        <div id="ProductDetails">
-          <p class="px-1 pt-0.5 text-lg text-[#252525] font-semibold">
-            {{ product.title.substring(0, 60) }}
-          </p>
-          <span class="flex items-center justify-start gap-3 px-1">
-            <span class="font-semibold">$ {{ priceComputed }}</span>
-            <span class="text-gray-500 line-through font-semibold"
-              >$ {{ oldPriceComputed }}</span
-            >
-          </span>
-
-          <span class="px-1 text-[#a10000] text-xs font-semibold">
-            Extra 5% off
-          </span>
-
-          <div class="flex items-center gap-1 px-1 my-1">
-            <span
-              class="bg-[#11feed] border-2 border-[#11feed] text-xs font-semibold p-1 rounded-md"
-              >Welcome Deal</span
-            >
-            <span
-              class="bg-[#f2f2f2] border-2 border-[#11feed] text-xs font-semibold p-1 rounded-md"
-              >Top Selling</span
-            >
-          </div>
-
-          <p
-            class="flex items-center px-1 pt-0.5 text-xs text-[#252525] font-semibold"
-          >
-            5,000+ sold
-            <Icon
-              name="material-symbols:star-rate"
-              color="#757575"
-              class="ml-1.5"
-            />
-            4.7
-          </p>
-
-          <p class="px-1 pb-1">
-            <span class="text-[#0f6922] text-xs font-semibold"
-              >Free Shipping</span
-            >
-          </p>
+      <div class="group relative m-2 md:w-[220px] h-full sm:w-full">
+        <div class="rounded-lg group-hover:opacity-75 bg-contain">
+          <img
+            :src="product.url"
+            class="rounded-lg object-contain h-80 w-100"
+          />
         </div>
+        <div class="flex justify-between mt-2 px-2">
+          <div>
+            <h3
+              class="w-[210px] text-sm text-gray-700 truncate overflow-hidden ..."
+            >
+              {{ product.title.substring(0, 60) }}
+            </h3>
+          </div>
+        </div>
+        <span class="flex items-center justify-start gap-3 px-2">
+          <span class="font-semibold">$ {{ priceComputed }}</span>
+          <span class="text-gray-500 line-through font-semibold"
+            >$ {{ oldPriceComputed }}</span
+          >
+        </span>
       </div>
     </NuxtLink>
   </div>

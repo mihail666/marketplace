@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed inset-0 bg-black bg-opacity-50 w-full flex items-center justify-center h-[100vh] transition-[4s] backdrop-blur-sm z-30"
+    class="fixed inset-0 bg-black bg-opacity-70 w-full flex items-center justify-center h-[100vh] transition-[4s] backdrop-blur-lg z-30"
   >
     <div class="rounded-md">
       <Icon
