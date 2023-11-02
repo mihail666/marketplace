@@ -179,7 +179,7 @@
 
             <div
               v-if="items && items.data"
-              class="absolute bg-white max-w-[700px] h-auto w-full"
+              class="absolute bg-white max-w-[700px] h-auto w-full rounded-b-lg drop-shadow-md"
             >
               <div
                 v-for="item in items.data"
