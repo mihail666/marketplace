@@ -1,7 +1,7 @@
 <template>
   <div
     id="MenuOverlay"
-    class="fixed z-50 bottom-0 h-full w-full bg-white px-3"
+    class="fixed z-50 bottom-0 right-0 h-full w-full bg-white px-3"
   >
     <div class="flex items-center justify-between py-5">
       <NuxtLink

@@ -2,7 +2,7 @@
   <MainLayout>
     <div
       id="IndexPage"
-      class="mt-4 md:-mt-2 max-w-[1440px] mx-auto px-4"
+      class="mt-4 md:-mt-2 max-w-[1440px] mx-auto"
     >
       <div
         v-if="products"

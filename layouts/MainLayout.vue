@@ -10,7 +10,7 @@
       class="w-full bg-[#F2F2F2] border-b md:block hidden"
     >
       <ul
-        class="flex items-center justify-end text-xs text-[#333333] font-light px-4 h-10 bg-[#F2F2F2] max-w-[1354px] mx-auto"
+        class="flex items-center justify-end text-xs text-[#333333] font-light px-4 h-10 bg-[#F2F2F2] max-w-[1440px] mx-auto"
       >
         <li
           class="border-r border-r-gray-400 px-3 hover:text-[#11feed] cursor-pointer font-semibold transition-[1s] duration-300 ease-out"
@@ -135,9 +135,7 @@
       id="MainHeader"
       class="flex items-center w-full bg-white drop-shadow-md z-40"
     >
-      <div
-        class="flex justify-between gap-10 max-w-[1440px] w-full p-2 mx-auto pr-16"
-      >
+      <div class="flex gap-10 max-w-[1420px] w-full py-2 mx-auto">
         <NuxtLink
           to="/"
           class="min-w-[180px]"
@@ -219,7 +217,7 @@
             >
               {{ userStore.cart.length }}
             </span>
-            <div class="nim-w-[40px] transition-[1s] duration-300 ease-out">
+            <div class="min-w-[40px] transition-[1s] duration-300 ease-out">
               <Icon
                 name="solar:bag-3-broken"
                 size="33"
@@ -232,6 +230,22 @@
             </div>
           </button>
         </nuxt-link>
+
+        <div
+          v-if="user"
+          class="my-auto items-center justify-end md:flex hidden"
+        >
+          <div>
+            {{ user.user_metadata.full_name }}
+          </div>
+
+          <div>
+            <img
+              class="rounded-full w-[40px] ml-2"
+              :src="user.user_metadata.avatar_url"
+            />
+          </div>
+        </div>
 
         <button
           @mouseenter="isHover = true"
@@ -249,22 +263,6 @@
             "
           />
         </button>
-
-        <div
-          v-if="user"
-          class="my-auto flex items-center justify-end"
-        >
-          <div>
-            {{ user.user_metadata.full_name }}
-          </div>
-
-          <div>
-            <img
-              class="rounded-full w-[40px] ml-2"
-              :src="user.user_metadata.avatar_url"
-            />
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -289,7 +287,7 @@ let isSearching = ref(false)
 let isHover = ref(false)
 let items = ref('')
 
-onMounted(() => isSearching.value = false)
+onMounted(() => (isSearching.value = false))
 
 const goTo = (url) => {
   return navigateTo(`/${url}`)
